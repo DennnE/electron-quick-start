@@ -48,27 +48,27 @@ builder.build({
     console.log(error);
 });
 
-builder.build({
-    targets: Platform.LINUX.createTarget(),
-    projectDir: process.cwd(),
-    config: {
-        "electronVersion": ELECTRON_VERSION,
-        "linux": {
-            "target": "snap",
-            "executableName": "electron-sample",
-            "desktop": {
-                "Type": "Application",
-                "Name": "Electron Sample",
-                "Exec": "electron-sample %U"
-            }
-        },
-        "directories": {
-            "output": process.cwd()
-        }
-    }
-}).then(() => {
-    console.log('Done creating Snap.')
-})
-.catch((error) => {
-    console.log(error);
-});
+// builder.build({
+//     targets: Platform.LINUX.createTarget(),
+//     projectDir: process.cwd(),
+//     config: {
+//         "electronVersion": ELECTRON_VERSION,
+//         "linux": {
+//             "target": "snap",
+//             "executableName": "electron-sample",
+//             "desktop": {
+//                 "Type": "Application",
+//                 "Name": "Electron Sample",
+//                 "Exec": "electron-sample %U"
+//             }
+//         },
+//         "directories": {
+//             "output": process.cwd()
+//         }
+//     }
+// }).then(() => {
+//     console.log('Done creating Snap.')
+// })
+// .catch((error) => {
+//     console.log(error);
+// });
