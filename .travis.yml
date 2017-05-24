@@ -11,7 +11,7 @@ matrix:
       osx_image: xcode7.3
 
 before_install:
-  - ./linux-setup.sh
+  - sudo ./linux-setup.sh
   - "npm install"
 
 script:
