@@ -12,7 +12,7 @@ matrix:
 
 before_install:
   if [ ${TRAVIS_OS_NAME} = "linux" ]; then
-      - ./linux-setup.sh
+      - "./linux-setup.sh"
   fi
 
   - "npm install"
