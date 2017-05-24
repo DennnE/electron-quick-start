@@ -1,7 +1,7 @@
 name: electron-sample
 version: 1.0.0
 summary: electron-sample
-vendor: DennnE
+vendor: denner_erthal@hotmail.com
 description: electron-sample
 confinement: strict
 icon: snap/gui/icon.png
