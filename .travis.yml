@@ -7,7 +7,7 @@ os:
 
 before_install:
   - brew install docker
-  
+  - open -a docker
   - "npm install"
 
 script:
