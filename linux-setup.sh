@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo apt-get install snapcraft
+apt-get install snapcraft
