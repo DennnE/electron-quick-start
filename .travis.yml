@@ -8,7 +8,7 @@ os:
 before_install:
   - brew cask install virtualbox
   - brew install docker docker-machine
-  - docker-machine create --driver vmwarefusion main
+  - docker-machine create --vmwarefusion-boot2docker-url=https://github.com/boot2docker/boot2docker/releases/download/v1.3.2/boot2docker.iso --driver vmwarefusion main
   - "npm install"
 
 script:
