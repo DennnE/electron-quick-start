@@ -2,11 +2,17 @@ language: node_js
 
 node_js: "4.4.5"
 
-os: osx
-osx_image: xcode7.3
+- os: linux
+  dist: trusty
+  sudo: required
 
 before_install:
-  - docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:latest
+  - sudo add-apt-repository ppa:snappy-dev/tools-proposed -y
+
+  - sudo apt-get update
+
+  - sudo apt-get install snapcraft -y
+  
   - "npm install"
 
 script:
