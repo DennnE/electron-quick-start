@@ -1,6 +1,7 @@
 name: electron-sample
 version: 1.0.0
 summary: electron-sample
+vendor: DennnE
 description: electron-sample
 confinement: strict
 grade: stable
