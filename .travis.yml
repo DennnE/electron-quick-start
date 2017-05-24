@@ -6,6 +6,7 @@ os:
   - osx
 
 before_install:
+  - brew cask install virtualbox
   - brew install docker docker-machine
   - docker-machine create main
   - "npm install"
