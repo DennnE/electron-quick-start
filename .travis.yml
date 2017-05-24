@@ -11,10 +11,7 @@ matrix:
       osx_image: xcode7.3
 
 before_install:
-  if [ ${TRAVIS_OS_NAME} = "linux" ]; then
-      - "./linux-setup.sh"
-  fi
-
+  - "./linux-setup.sh"
   - "npm install"
 
 script:
