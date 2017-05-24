@@ -6,8 +6,8 @@ os:
   - osx
 
 before_install:
-  - brew install docker
-  - open -a docker
+  - brew install docker docker-machine
+  - docker-machine create main
   - "npm install"
 
 script:
