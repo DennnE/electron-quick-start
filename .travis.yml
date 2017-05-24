@@ -5,6 +5,9 @@ node_js: "4.4.5"
 os:
   - linux
   - osx
+  
+dist: trusty
+sudo: required
 
 before_install:
   - sudo add-apt-repository ppa:snappy-dev/tools-proposed -y
