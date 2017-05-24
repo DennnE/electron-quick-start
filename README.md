@@ -2,6 +2,8 @@
 
 **Clone and run for a quick way to see Electron in action.**
 
+triggering build
+
 This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
 
 **Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
