@@ -1,8 +1,9 @@
 #!/bin/bash
 # Copyright (C) 2017 Marco Trevisan
 
+echo "Setting xe"
 set -xe
-
+echo "setting vars"
 TRAVIS_BUILD_STEP="$1"
 DOCKER_BUILDER_NAME='builder'
 THIS_PATH=$(dirname $0)
