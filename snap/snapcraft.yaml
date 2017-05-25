@@ -1,0 +1,35 @@
+name: electron-sample
+version: 3.0.5
+summary: electron-sample
+description: electron-sample
+confinement: strict
+grade: stable
+icon: dist/electron/base/64x64.png
+apps:
+  gravit-designer:
+    command: desktop-launch $SNAP/electron-sample
+    plugs:
+      - home
+      - x11
+      - unity7
+      - browser-support
+      - network
+      - gsettings
+      - pulseaudio
+      - opengl
+parts:
+  app:
+    plugin: dump
+    stage-packages:
+      - libnotify4
+      - libappindicator1
+      - libxtst6
+      - libnss3
+      - libxss1
+      - fontconfig-config
+      - gconf2
+      - libasound2
+      - pulseaudio
+    source: dist/electron/electron-quick-start-linux-x64
+    after:
+      - desktop-qt5
