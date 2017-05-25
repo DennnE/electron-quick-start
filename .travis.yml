@@ -18,6 +18,8 @@ env:
     - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
+ - chmod +x travis-setup.sh
+ - chmod +x travis-linux-setup.sh
  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./travis-setup.sh; fi
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh before_install; fi
   
