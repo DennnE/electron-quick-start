@@ -2,14 +2,13 @@ language: node_js
 
 node_js: "4.4.5"
 
-os:
-  - linux
-  - osx
-
-dist: trusty
-sudo: required
-
-osx_image: xcode7.3
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+    - os: osx
+      osx_image: xcode7.3
 
 services:
   - docker
@@ -19,21 +18,14 @@ env:
     - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
-  if [ ${TRAVIS_OS_NAME} != "linux" ]; then
-    ./travis-setup.sh
-  else
-    ./travis-linux-setup.sh before_install
-  fi
+ - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./travis-setup.sh; fi
+ - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh before_install; fi
   
-  "npm install -g gulp"
+  -"npm install -g gulp"
 
-  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
-    ./travis-linux-setup.sh install
-  fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh install; fi
 
 script:
-  "gulp travis-package"
+  -"gulp travis-package"
 
-  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
-    ./travis-linux-setup.sh script
-  fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh script; fi
