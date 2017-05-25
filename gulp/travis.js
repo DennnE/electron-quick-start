@@ -14,7 +14,7 @@ gulp.task('travis-package', function (cb) {
 
     var TRAVIS_OS = process.env['TRAVIS_OS_NAME'];
 
-    if (TRAVIS_OS === 'linux') {
+    if (TRAVIS_OS !== 'linux') {
         console.log('osx build');
     } else {
         runSequence(
