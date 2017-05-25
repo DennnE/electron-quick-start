@@ -23,11 +23,11 @@ before_install:
  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./travis-setup.sh; fi
  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh before_install; fi
   
-  -"npm install -g gulp"
+  - "npm install -g gulp"
 
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh install; fi
 
 script:
-  -"gulp travis-package"
+  - "gulp travis-package"
 
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh script; fi
