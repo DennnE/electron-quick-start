@@ -23,8 +23,8 @@ if [ "$TRAVIS_BUILD_STEP" == "before_install" ]; then
 
     docker_exec apt-get update -q
     docker_exec apt-get install -y snapcraft
-    apt-get install -y nodejs
-    apt-get install -y npm
+    sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
 elif [ "$TRAVIS_BUILD_STEP" == "script" ]; then
     docker_exec snapcraft
 fi
