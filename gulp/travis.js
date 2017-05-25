@@ -38,7 +38,12 @@ gulp.task('travis-package', function (cb) {
                         gulp
                             .src('dist/*.snap')
                             .pipe(gulp.dest('dist/_downloads/linux'))
-                    )
+                    ).on('end', function () {
+                        fs.readdirSync('./').forEach(file => {
+                          console.log(file);
+                        });
+                        cb();
+                    });
                 });
             }
         );
