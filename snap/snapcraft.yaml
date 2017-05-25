@@ -6,7 +6,7 @@ confinement: strict
 grade: stable
 icon: dist/electron/base/64x64.png
 apps:
-  gravit-designer:
+  electron-sample:
     command: desktop-launch $SNAP/electron-sample
     plugs:
       - home
