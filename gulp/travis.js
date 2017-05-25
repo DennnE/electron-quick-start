@@ -36,7 +36,7 @@ gulp.task('travis-package', function (cb) {
                 spawn.on('close', (code) => {
                     es.merge(
                         gulp
-                            .src('*.snap')
+                            .src('dist/*.snap')
                             .pipe(gulp.dest('dist/_downloads/linux'))
                     )
                 });
