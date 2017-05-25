@@ -15,6 +15,7 @@ env:
   - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
+  - chmod +x travis-build.sh
   - ./travis-build.sh before_install
   
 install:
