@@ -23,8 +23,17 @@ gulp.task('travis-package', function (cb) {
             'unpack-linux',
             function () {
                 console.log('FINISHED PACKING LINUX');
-                child_process.exec('docker exec -i builder snapcraft', function (err, stdout, stderr) {
-                    if (err) throw err;
+                const spawn = child_process.spawn('docker', ['exec', '-i', 'builder', 'snapcraft']);
+
+                spawn.stdout.on('data', (data) => {
+                  console.log(`stdout: ${data}`);
+                });
+
+                spawn.stderr.on('data', (data) => {
+                  console.log(`stderr: ${data}`);
+                });
+
+                spawn.on('close', (code) => {
                     es.merge(
                         gulp
                             .src('*.snap')
