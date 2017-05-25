@@ -1,7 +1,6 @@
 name: electron-sample
 version: 1.0.0
 summary: electron-sample
-vendor: denner_erthal@hotmail.com
 description: electron-sample
 confinement: strict
 icon: gui/icon.png
@@ -31,6 +30,6 @@ parts:
       - gconf2
       - libasound2
       - pulseaudio
-    source: /linux-unpacked
+    source: /
     after:
       - desktop-qt5
