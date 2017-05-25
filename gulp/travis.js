@@ -22,6 +22,14 @@ gulp.task('travis-package', function (cb) {
             'unpack-linux',
             function () {
                 console.log('FINISHED PACKING LINUX');
+                child_process.exec('docker exec -i builder snapcraft', function (err, stdout, stderr) {
+                    if (err) throw err;
+                    es.merge(
+                        gulp
+                            .src('*.snap')
+                            .pipe(gulp.dest('dist/_downloads/linux'))
+                    )
+                });
             }
         );
     }
