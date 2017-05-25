@@ -15,10 +15,10 @@ env:
   - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
-  - ./travis-build.sh before_install
+  - travis-build.sh before_install
   
 install:
-  - ./travis-build.sh install
+  - travis-build.sh install
 
 script:
-  - linux/travis-build.sh script
+  - travis-build.sh script
