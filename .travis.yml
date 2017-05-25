@@ -19,17 +19,17 @@ env:
     - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
-  if [ ${TRAVIS_OS_NAME} != "linux" ]; then
+  - if [ ${TRAVIS_OS_NAME} != "linux" ]; then
     - ./travis-setup.sh
-  else
+  - else
     - ./travis-linux-setup.sh before_install
-  fi
+  - fi
   
   - "npm install -g gulp"
 
-  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
     - ./travis-linux-setup.sh install
-  fi
+  - fi
 
 script:
   - "gulp travis-package"
