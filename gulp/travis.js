@@ -5,6 +5,7 @@ var replace = require('gulp-replace');
 var es = require('event-stream');
 var runSequence = require('run-sequence');
 var cloudfront_invalidate = require('gulp-cloudfront-invalidate');
+var child_process = require('child_process');
 
 var packageInfo = require('../package.json');
 
