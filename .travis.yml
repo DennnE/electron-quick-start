@@ -2,24 +2,41 @@ language: node_js
 
 node_js: "4.4.5"
 
-os: linux
+os:
+  - linux
+  - osx
+
 dist: trusty
 sudo: required
-language: generic
+
+osx_image: xcode7.3
 
 services:
-- docker
+  - docker
 
 env:
   global:
-  - DOCKER_IMAGE=ubuntu:xenial
+    - ANDROID_HOME=/usr/local/opt/android-sdk
+    - WINEDLLOVERRIDES="mshtml="
+    - secure: hhh+idGdiVlW9TXywJIO840U3RR+Rd3WyzMpfDF98NnGjuq9BF8+0+dP1JxictffjmYWndiJ+lh6sMgScyGMzwRqkbovedBMFCqDBAYJBSIo+8HUKk50X75fr1uFt4bX20c6OguZyBP8NoZMWWxkfXF82vM4JFPQl3kVhoFkeU0=
+    - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
-  - chmod +x travis-build.sh
-  - ./travis-build.sh before_install
+  if [ ${TRAVIS_OS_NAME} != "linux" ]; then
+    - ./travis-setup.sh
+  else
+    - ./travis-linux-setup.sh before_install
+  fi
   
-install:
-  - ./travis-build.sh install
+  - "npm install -g gulp"
+
+  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+    - ./travis-linux-setup.sh install
+  fi
 
 script:
-  - ./travis-build.sh script
+  - "gulp travis-package"
+
+  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+    - ./travis-linux-setup.sh script
+  fi
