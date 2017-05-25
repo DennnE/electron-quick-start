@@ -5,10 +5,20 @@ node_js: "4.4.5"
 os: linux
 dist: trusty
 sudo: required
+language: generic
+
+services:
+- docker
+
+env:
+  global:
+  - DOCKER_IMAGE=ubuntu:xenial
 
 before_install:
-  - "npm install"
+  - ./travis-build.sh before_install
+  
+install:
+  - ./travis-build.sh install
 
 script:
-  - "node builder.js"
-
+  - linux/travis-build.sh script
