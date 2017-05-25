@@ -34,6 +34,6 @@ before_install:
 script:
   - "gulp travis-package"
 
-  if [ ${TRAVIS_OS_NAME} == "linux" ]; then
+  - if [ ${TRAVIS_OS_NAME} == "linux" ]; then
     - ./travis-linux-setup.sh script
-  fi
+  - fi
