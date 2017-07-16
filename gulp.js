@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var child_process = require('child_process');
 var packager = require('electron-packager');
+var del = require('del');
 
 var packageInfo = require('./package.json');
 
