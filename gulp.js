@@ -36,9 +36,9 @@ gulp.task('package-linux', function(cb) {
 
 gulp.task('package-snap-assets', function (cb) {
     return es.merge(
-        gulp.src('package/snap/gui/{gravit-designer.desktop,icon.png}')
+        gulp.src('package/gui/{gravit-designer.desktop,icon.png}')
             .pipe(gulp.dest('snap/gui')),
-        gulp.src('package/snap/snapcraft.yaml')
+        gulp.src('package/snapcraft.yaml')
             .pipe(gulp.dest('snap'))
     );
 });
