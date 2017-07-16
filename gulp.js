@@ -1,8 +1,8 @@
 var gulp = require('gulp');
+var es = require('event-stream');
 var runSequence = require('run-sequence');
 var child_process = require('child_process');
 var packager = require('electron-packager');
-var del = require('del');
 
 var packageInfo = require('./package.json');
 
@@ -34,9 +34,17 @@ gulp.task('package-linux', function(cb) {
         cb);
 }); 
 
+gulp.task('package-snap-assets', function (cb) {
+    return es.merge(
+        gulp.src('package/snap/gui/{gravit-designer.desktop,icon.png}')
+            .pipe(gulp.dest('gui')),
+        gulp.src('package/snap/snapcraft.yaml')
+            .pipe(gulp.dest('./'))
+    );
+});
+
 // Special travis package task that copies all outputs into travis/s3-upload folder for S3 upload
 gulp.task('travis-package', function (cb) {
-    del.sync(['travis']);
 
     if (process.argv[3] === '--build' && process.argv[4] === 'browser') {
         process.env.BUILD_TARGET = 'browser';
@@ -46,7 +54,11 @@ gulp.task('travis-package', function (cb) {
     
     runSequence(
         'package-linux',
+        'package-snap-assets',
         function () {
+            gulp.src('package/snap/snapcraft.yaml')
+            .pipe(gulp.dest('dist'))
+        
             console.log(process.cwd());
             const spawn = child_process.spawn('docker', ['exec', '-i', 'builder', 'snapcraft']);
 
