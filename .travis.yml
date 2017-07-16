@@ -28,7 +28,7 @@ env:
     - BUILD_TARGET=everything
 
 before_install:
-  - chmod +x gradlew
+  - chmod +x travis-linux-setup.sh
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./travis-setup.sh; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh; fi
 
