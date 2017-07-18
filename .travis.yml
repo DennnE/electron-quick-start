@@ -27,6 +27,7 @@ env:
   matrix:
     - BUILD_TARGET=browser
     - BUILD_TARGET=everything
+    - BUILD_TARGET=snap
 
 before_install:
   - chmod +x travis-linux-setup.sh
