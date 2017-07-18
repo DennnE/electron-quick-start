@@ -46,33 +46,50 @@ gulp.task('package-snap-assets', function (cb) {
 // Special travis package task that copies all outputs into travis/s3-upload folder for S3 upload
 gulp.task('travis-package', function (cb) {
 
+    var TRAVIS_OS = process.env['TRAVIS_OS_NAME'];
+
+    if (process.env['TRAVIS_BRANCH'] === 'master') {
+        console.log('Setting trunk mode...');
+        process.env.NODE_ENV = 'trunk';
+    } else {
+        console.log('Setting production mode...');
+        process.env.NODE_ENV = 'production';
+    }
+
     if (process.argv[3] === '--build' && process.argv[4] === 'browser') {
         process.env.BUILD_TARGET = 'browser';
+    } else if (process.argv[3] === '--build' && process.argv[4] === 'snap') {
+        process.env.BUILD_TARGET = 'snap';
     } else {
-        process.env.BUILD_TARGET = '';
+        process.env.BUILD_TARGET = 'snap';
     }
     
-    runSequence(
-        'package-linux',
-        'package-snap-assets',
-        function () {
-            gulp.src('package/snap/snapcraft.yaml')
-            .pipe(gulp.dest('dist'))
-        
-            console.log(process.cwd());
-            const spawn = child_process.spawn('docker', ['exec', '-i', 'builder', 'snapcraft']);
+    //just actually build if target and os match
+    //OS = linux and TARGET = snap -> build
+    //OS = osx and TARGET != snap -> build
+    if ((TRAVIS_OS === 'linux' && process.env.BUILD_TARGET === 'snap') || (TRAVIS_OS === 'osx' && process.env.BUILD_TARGET !== 'snap')) {
+        runSequence(
+            'package-linux',
+            'package-snap-assets',
+            function () {
+                gulp.src('package/snap/snapcraft.yaml')
+                .pipe(gulp.dest('dist'))
 
-            spawn.stdout.on('data', (data) => {
-                console.log(`stdout: ${data}`);
-            });
+                console.log(process.cwd());
+                const spawn = child_process.spawn('docker', ['exec', '-i', 'builder', 'snapcraft']);
 
-            spawn.stderr.on('data', (data) => {
-               console.log(`stderr: ${data}`);
-            });
+                spawn.stdout.on('data', (data) => {
+                    console.log(`stdout: ${data}`);
+                });
 
-            spawn.on('close', (code) => {
-                cb();
-            });
-        }
-    );
+                spawn.stderr.on('data', (data) => {
+                   console.log(`stderr: ${data}`);
+                });
+
+                spawn.on('close', (code) => {
+                    cb();
+                });
+            }
+        );
+    }
 });
