@@ -61,7 +61,7 @@ gulp.task('travis-package', function (cb) {
     } else if (process.argv[3] === '--build' && process.argv[4] === 'snap') {
         process.env.BUILD_TARGET = 'snap';
     } else {
-        process.env.BUILD_TARGET = 'snap';
+        process.env.BUILD_TARGET = '';
     }
     
     //just actually build if target and os match
@@ -91,5 +91,8 @@ gulp.task('travis-package', function (cb) {
                 });
             }
         );
+    } else {
+        console.log('os and target mismatch, exiting build...');
+        cb();
     }
 });
