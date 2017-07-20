@@ -25,13 +25,13 @@ env:
     - secure: hhh+idGdiVlW9TXywJIO840U3RR+Rd3WyzMpfDF98NnGjuq9BF8+0+dP1JxictffjmYWndiJ+lh6sMgScyGMzwRqkbovedBMFCqDBAYJBSIo+8HUKk50X75fr1uFt4bX20c6OguZyBP8NoZMWWxkfXF82vM4JFPQl3kVhoFkeU0=
     - DOCKER_IMAGE=ubuntu:xenial
   matrix:
-  include:
-    - os: osx
-      BUILD_TARGET: browser
-    - os: osx
-      BUILD_TARGET: everything
-    - os: linux
-      BUILD_TARGET: snap
+    include:
+      - os: osx
+        BUILD_TARGET: browser
+      - os: osx
+        BUILD_TARGET: everything
+      - os: linux
+        BUILD_TARGET: snap
       
 
 before_install:
