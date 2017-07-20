@@ -25,7 +25,6 @@ env:
     - secure: hhh+idGdiVlW9TXywJIO840U3RR+Rd3WyzMpfDF98NnGjuq9BF8+0+dP1JxictffjmYWndiJ+lh6sMgScyGMzwRqkbovedBMFCqDBAYJBSIo+8HUKk50X75fr1uFt4bX20c6OguZyBP8NoZMWWxkfXF82vM4JFPQl3kVhoFkeU0=
     - DOCKER_IMAGE=ubuntu:xenial
   matrix:
-  matrix:
     - BUILD_TARGET=browser
     - BUILD_TARGET=everything
     - BUILD_TARGET=snap
