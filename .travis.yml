@@ -56,4 +56,4 @@ deploy:
     cache_control: "no-cache"
     bucket: "test"
     on:
-      condition: "$TRAVIS_OS_NAME" == "osx"
+      condition: "$TRAVIS_OS_NAME == osx"
