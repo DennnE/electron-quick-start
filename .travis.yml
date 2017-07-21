@@ -39,15 +39,9 @@ matrix:
     env: BUILD_TARGET=everything
 
 before_install:
-  - chmod +x travis-linux-setup.sh
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./travis-setup.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./travis-linux-setup.sh; fi
 
   # Install node build tools
   - npm install -g gulp
-
-script:
-  - "travis_wait 90 gulp travis-package --build $BUILD_TARGET"
   
 deploy:
  # Trunk
