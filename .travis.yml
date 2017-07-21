@@ -48,3 +48,18 @@ before_install:
 
 script:
   - "travis_wait 90 gulp travis-package --build $BUILD_TARGET"
+  
+deploy:
+ # Trunk
+  - provider: s3
+    access_key_id: "MYKEYISSHIT"
+    secret_access_key: "MYSECRETISNOTASECRET"
+    region: "BRAZIL"
+    skip_cleanup: true
+    local_dir: travis/s3-upload-index
+    upload-dir: test/aa
+    detect_encoding: true
+    cache_control: "no-cache"
+    bucket: "test"
+    on:
+      condition: BUILD_TARGET=browser
