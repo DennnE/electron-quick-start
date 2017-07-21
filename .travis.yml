@@ -56,4 +56,5 @@ deploy:
     cache_control: "no-cache"
     bucket: "test"
     on:
+      branch: master
       condition: "$BUILD_TARGET = browser"
